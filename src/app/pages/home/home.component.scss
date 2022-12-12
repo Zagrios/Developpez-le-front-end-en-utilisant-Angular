@@ -1,0 +1,24 @@
+:host{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart{
+    width: 80%;
+    height: 400px;
+
+    
+}
+
+ngx-charts-pie-chart{
+    ::ng-deep{
+        .pie-label{
+            font-size: 1.5rem;
+            text-overflow: unset;
+        }
+    }
+    
+}

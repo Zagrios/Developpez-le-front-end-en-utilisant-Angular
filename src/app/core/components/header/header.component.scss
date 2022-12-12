@@ -1,0 +1,21 @@
+@import "src/variables.scss"; 
+
+:host{
+    width: 100%;
+    background-color: $main-color;
+    padding: 20px 35px;
+    color: white;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+
+    a{
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        font-weight: bold;
+
+        &:visited{ color: currentColor; }
+    }
+}

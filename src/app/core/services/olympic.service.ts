@@ -1,31 +1,40 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Olympics } from '../models/olympic.model';
+import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OlympicService {
-  private olympicUrl = './assets/mock/olympic.json';
-  private olympics$ = new BehaviorSubject<any>(undefined);
 
-  constructor(private http: HttpClient) {}
+  private readonly olympicUrl = './assets/mock/olympic.json';
 
-  loadInitialData() {
-    return this.http.get<any>(this.olympicUrl).pipe(
-      tap((value) => this.olympics$.next(value)),
-      catchError((error, caught) => {
-        // TODO: improve error handling
-        console.error(error);
-        // can be useful to end loading state and let the user know something went wrong
-        this.olympics$.next(null);
-        return caught;
-      })
-    );
-  }
+  private olympics$: Observable<Olympics[]>;
 
-  getOlympics() {
-    return this.olympics$.asObservable();
-  }
+    constructor(
+        private http: HttpClient,
+        private errorHandler: ErrorHandlerService
+    ) {}
+
+    private handleError(err: HttpErrorResponse){
+        this.errorHandler.handle(err);
+
+        return throwError(() => new Error("Something bad happened :( Please retry later."));
+    }
+
+    public loadInitialData(): Observable<Olympics[]> {
+
+        this.olympics$ = this.http.get<Olympics[]>(this.olympicUrl).pipe(
+            catchError(err => this.handleError(err))
+        );
+
+        return this.olympics$;
+    }
+
+    public getOlympics(): Observable<Olympics[]> {
+        return this.olympics$;
+    }
 }
