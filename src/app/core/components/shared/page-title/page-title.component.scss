@@ -1,0 +1,13 @@
+@import "src/variables.scss";
+
+:host{
+    background-color: $main-color;
+    color: white;
+    padding: 5px;
+    border-radius: $main-radius;
+
+    h1{
+        font-weight: normal;
+        margin: 0;
+    }
+}

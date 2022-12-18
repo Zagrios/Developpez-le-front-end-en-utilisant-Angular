@@ -1,9 +1,24 @@
+<page-title title="Medals per Country"></page-title>
+<div class="cards">
+    <data-card title="Number of JOs" [value]="numberOfJOs$|async"></data-card>
+    <data-card title="Number of countries" [value]="(chartData$|async)?.length"></data-card>
+</div>
 <div class="chart">
     <ngx-charts-pie-chart
         [results]="chartData$|async"
         [labels]="true"
         [trimLabels]="false"
         [arcWidth]="2"
-    ></ngx-charts-pie-chart>
+    >
+        <ng-template #tooltipTemplate let-model="model">
+            <div class="tooltip">
+                <span class="model-name">{{ model.name }}</span>
+                <span class="model-value">
+                    <span class="icon">🏅</span>
+                    <span class="value">{{ model.value }}</span>
+                </span>
+            </div>
+        </ng-template>
+    </ngx-charts-pie-chart>
 </div>
 

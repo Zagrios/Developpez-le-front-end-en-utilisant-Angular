@@ -1,10 +1,44 @@
+@import "variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+
 html, body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-*{box-sizing: border-box;}
+
+ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip {
+
+    // https://github.com/swimlane/ngx-charts/issues/1231
+
+    .tooltip-caret.position-top {
+        border-top-color: $main-color;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    background-color: $main-color;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+    translate: 0 35px;
+
+    .tooltip{
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        gap: 5px;
+        font-size: .95rem;
+    }
+}

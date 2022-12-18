@@ -7,13 +7,17 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PageTitleComponent } from './core/components/shared/page-title/page-title.component';
+import { DataCardComponent } from './core/components/shared/data-card/data-card.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         NotFoundComponent,
-        HeaderComponent
+        HeaderComponent,
+        PageTitleComponent,
+        DataCardComponent
     ],
     imports: [
         BrowserModule,
