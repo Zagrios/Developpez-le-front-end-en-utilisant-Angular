@@ -9,6 +9,7 @@
         [labels]="true"
         [trimLabels]="false"
         [arcWidth]="2"
+        (select)="onCountrySelected($event)"
     >
         <ng-template #tooltipTemplate let-model="model">
             <div class="tooltip">

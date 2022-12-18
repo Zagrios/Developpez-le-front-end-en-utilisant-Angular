@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataItem } from '@swimlane/ngx-charts';
 import { Observable, map, last } from 'rxjs';
-import { CountryChartData } from 'src/app/core/models/country-chart-data.model';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 })
 export class HomeComponent implements OnInit {
 
-    public chartData$: Observable<CountryChartData>;
+    public chartData$: Observable<DataItem[]>;
     public numberOfJOs$: Observable<number>;
 
     constructor(private olympicService: OlympicService) {}
@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
 
         this.chartData$ = olympicsData.pipe(map(olympics => {
             return olympics.map(olympic =>({
-                    id: olympic.id,
                     name: olympic.country,
                     value: olympic.participations.reduce((acc, participation) => acc + participation.medalsCount, 0)
             }));
@@ -32,5 +31,9 @@ export class HomeComponent implements OnInit {
             return (new Set(...joYears)).size;
         }));
 
+    }
+
+    public onCountrySelected(a: any){
+        console.log(a);
     }
 }
