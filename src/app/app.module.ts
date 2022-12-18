@@ -9,6 +9,7 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PageTitleComponent } from './core/components/shared/page-title/page-title.component';
 import { DataCardComponent } from './core/components/shared/data-card/data-card.component';
+import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { DataCardComponent } from './core/components/shared/data-card/data-card.
         NotFoundComponent,
         HeaderComponent,
         PageTitleComponent,
-        DataCardComponent
+        DataCardComponent,
+        CountryDetailsComponent
     ],
     imports: [
         BrowserModule,

@@ -1,5 +1,4 @@
 :host{
-    width: 100%;
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -8,7 +7,7 @@
 }
 
 .chart{
-    width: 80%;
+    width: 100%;
     height: 400px;
 }
 

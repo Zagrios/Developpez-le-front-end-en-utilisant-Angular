@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Olympics } from '../models/olympic.model';
+import { catchError, map } from 'rxjs/operators';
+import { Olympic } from '../models/olympic.interface';
 import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class OlympicService {
 
   private readonly olympicUrl = './assets/mock/olympic.json';
 
-  private olympics$: Observable<Olympics[]>;
+  private olympics$: Observable<Olympic[]>;
 
     constructor(
         private http: HttpClient,
@@ -25,16 +25,25 @@ export class OlympicService {
         return throwError(() => new Error("Something bad happened :( Please retry later."));
     }
 
-    public loadInitialData(): Observable<Olympics[]> {
+    private loadInitialData(): Observable<Olympic[]> {
 
-        this.olympics$ = this.http.get<Olympics[]>(this.olympicUrl).pipe(
+        if(!!this.olympics$){ return this.olympics$; }
+
+        this.olympics$ = this.http.get<Olympic[]>(this.olympicUrl).pipe(
             catchError(err => this.handleError(err))
         );
 
         return this.olympics$;
     }
 
-    public getOlympics(): Observable<Olympics[]> {
-        return this.olympics$;
+    public getOlympics(): Observable<Olympic[]> {
+
+        return this.loadInitialData();
+    }
+
+    public getOlympicById(id: number): Observable<Olympic>{
+        return this.getOlympics().pipe(map(olympics => (
+            olympics.find(olympic => olympic.id === id)
+        )));
     }
 }
