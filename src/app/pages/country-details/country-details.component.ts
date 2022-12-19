@@ -29,10 +29,12 @@ export class CountryDetailsComponent implements OnInit {
 
     ngOnInit(): void {
 
+        // get coutry id from url
         const coutryId = this.route.snapshot.paramMap.get("id");
 
         const coutryDetails = this.olympicService.getOlympicById(+coutryId);
 
+        // Map contry details to valid chart data
         this.chartData$ = coutryDetails.pipe(last(), map(olympic => [{
             name: olympic.country,
             series: olympic.participations.map(participation => ({
@@ -41,10 +43,12 @@ export class CountryDetailsComponent implements OnInit {
             }))
         }]))
 
+        // Map coutry details to page informations
         this.details$ = coutryDetails.pipe(last(), map(olympic => ({
             coutryName: olympic.country,
             totalEntries: olympic.participations.length,
 
+            // Compute totalMedals and totalAthletes
             ...olympic.participations.reduce((acc, current) => {
                 return {
                     totalMedals: acc.totalMedals + current.medalsCount,
