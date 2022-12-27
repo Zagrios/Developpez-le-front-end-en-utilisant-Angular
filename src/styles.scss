@@ -22,9 +22,19 @@ ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip {
 
     // https://github.com/swimlane/ngx-charts/issues/1231
 
-    .tooltip-caret.position-top {
-        border-top-color: $main-color;
-        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    .tooltip-caret {
+        &.position-top{
+            border-top-color: $main-color;
+        }
+        &.position-right{
+            border-right-color: $main-color;
+        }
+        &.position-left{
+            border-left-color: $main-color;
+        }
+        &.position-bottom{
+            border-bottom-color: $main-color;
+        }
     }
 
     background-color: $main-color;
