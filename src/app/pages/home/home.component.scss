@@ -4,21 +4,38 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .chart{
-    width: 100%;
+    width: 80%;
     height: 400px;
+    @media only screen and (max-width: 768px) {
+        height: 300px;
+    }
 }
 
 .cards{
     display: flex;
     gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media only screen and (max-width: 768px) {
+        gap: 20px;
+    }
 }
 
 ngx-charts-pie-chart{
     ::ng-deep .pie-label{
         font-size: 1.5rem;
         text-overflow: unset;
-    }    
+    } 
+    
+    @media only screen and (max-width: 768px) {
+        ::ng-deep .pie-label{
+            font-size: 1rem;
+            text-overflow: unset;
+        } 
+    }
 }

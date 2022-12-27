@@ -3,8 +3,9 @@
     <data-card title="Number of JOs" [value]="numberOfJOs$|async"></data-card>
     <data-card title="Number of countries" [value]="(chartData$|async)?.length"></data-card>
 </div>
-<div class="chart">
+<div #containerRef class="chart">
     <ngx-charts-pie-chart
+        [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
         [results]="chartData$|async"
         [labels]="true"
         [trimLabels]="false"

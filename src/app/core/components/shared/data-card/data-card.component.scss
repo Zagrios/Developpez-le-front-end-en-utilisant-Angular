@@ -9,6 +9,8 @@
     border-radius: $main-radius;
     padding: 10px 20px;
     font-size: 1.25rem;
+    flex-shrink: 0;
+    text-align: center;
 
     .value{
         font-weight: 900;
