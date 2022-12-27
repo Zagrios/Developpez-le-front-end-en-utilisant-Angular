@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map, last } from 'rxjs';
-import { CountryDataItem } from 'src/app/core/models/advanced-data-item.interface';
+import { CountryDataItem } from 'src/app/core/models/country-data-item.interface';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 
 @Component({
