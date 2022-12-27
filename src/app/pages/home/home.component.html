@@ -1,3 +1,26 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
+<page-title title="Medals per Country"></page-title>
+<div class="cards">
+    <data-card title="Number of JOs" [value]="numberOfJOs$|async"></data-card>
+    <data-card title="Number of countries" [value]="(chartData$|async)?.length"></data-card>
+</div>
+<div #containerRef class="chart">
+    <ngx-charts-pie-chart
+        [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
+        [results]="chartData$|async"
+        [labels]="true"
+        [trimLabels]="false"
+        [arcWidth]="2"
+        (select)="onCountrySelected($event)"
+    >
+        <ng-template #tooltipTemplate let-model="model">
+            <div class="tooltip">
+                <span class="model-name">{{ model.name }}</span>
+                <span class="model-value">
+                    <span class="icon">🏅</span>
+                    <span class="value">{{ model.value }}</span>
+                </span>
+            </div>
+        </ng-template>
+    </ngx-charts-pie-chart>
+</div>
+

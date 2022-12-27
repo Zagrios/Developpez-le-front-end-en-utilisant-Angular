@@ -1,0 +1,18 @@
+<page-title [title]="(details$|async)?.coutryName"></page-title>
+<div class="cards">
+    <data-card title="Number of entries" [value]="(details$|async)?.totalEntries"></data-card>
+    <data-card title="Total number medals" [value]="(details$|async)?.totalMedals"></data-card>
+    <data-card title="Total number of athletes" [value]="(details$|async)?.totalAthletes"></data-card>
+</div>
+<div class="chart">
+    <ngx-charts-line-chart
+        [results]="chartData$|async"
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="false"
+        [xAxis]="true"
+        [yAxis]="true"
+        [timeline]="true"
+        xAxisLabel="Dates"
+    ></ngx-charts-line-chart>
+</div>
