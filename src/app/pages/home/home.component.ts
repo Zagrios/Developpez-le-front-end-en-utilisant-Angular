@@ -35,8 +35,7 @@ export class HomeComponent implements OnInit {
 
         // When data finished loading, map data to total number of JOs
         this.numberOfJOs$ = olympicsData.pipe(last(), map(olympics => {
-            const joYears = olympics.map(olympic => olympic.participations.map(participation => participation.year));
-            return (new Set(...joYears)).size;
+            return olympics.reduce((acc, current) => current.participations.length > acc ? current.participations.length : acc, 0)
         }));
 
     }
